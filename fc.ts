@@ -40,21 +40,3 @@ async function run() {
 }
 
 run()
-
-/*
-first-agent git:(function-calling) ✗ npm start fc.ts
-
-> first-agent@1.0.0 start
-> NODE_OPTIONS='--import=tsx' node --env-file=.env fc.ts
-
-请输入你的问题 (输入 exit 退出): 明天天气如何
-回答: unknown
--------------------
-请输入你的问题 (输入 exit 退出): 帮忙预定明天的网球课
-回答: tenis
--------------------
-请输入你的问题 (输入 exit 退出): 创建明天的日历
-回答: calendar
--------------------
-请输入你的问题 (输入 exit 退出): exit
-*/
