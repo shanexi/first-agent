@@ -30,15 +30,8 @@ async function run() {
 
         const { object } = await generateObject({
             model: openai('gpt-4o-mini'),
-            output: 'enum',
-            enum: ['calendar', 'tenis', 'unknown'],
-            // schema: z.object({
-            //     recipe: z.object({
-            //         name: z.string(),
-            //         ingredients: z.array(z.object({ name: z.string(), amount: z.string() })),
-            //         steps: z.array(z.string()),
-            //     }),
-            // }),
+            output: 'array',
+            schema: z.enum(['calendar', 'tenis', 'unknown']),
             prompt,
         });
         console.log('回答:', object);
