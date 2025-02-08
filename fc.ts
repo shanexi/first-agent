@@ -4,10 +4,15 @@ import { generateObject } from 'ai';
 import { z } from 'zod'
 import { createOpenAI } from '@ai-sdk/openai';
 import * as readline from 'readline';
+import { createOllama } from "ollama-ai-provider";
 
 const openai = createOpenAI({
     apiKey: process.env.OPENAI_KEY,
     baseURL: process.env.OPENAI_BASEURL,
+});
+
+const ollama = createOllama({
+    baseURL: "http://localhost:11434/api",
 });
 
 async function run() {
@@ -29,9 +34,10 @@ async function run() {
         }
 
         const { object } = await generateObject({
-            model: openai('gpt-4o-mini'),
+            // model: openai('gpt-4o-mini'),
+            model: ollama("qwen2.5:14b"),
             output: 'array',
-            schema: z.enum(['calendar', 'tenis', 'unknown']),
+            schema: z.enum(['calendar', 'tennis', 'unknown']),
             prompt,
         });
         console.log('回答:', object);
