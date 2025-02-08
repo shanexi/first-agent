@@ -1,6 +1,6 @@
 // https://sdk.vercel.ai/docs/ai-sdk-core/generating-structured-data
 
-import { generateObject } from 'ai';
+import { generateObject, extractReasoningMiddleware, wrapLanguageModel } from 'ai';
 import { z } from 'zod'
 import { createOpenAI } from '@ai-sdk/openai';
 import * as readline from 'readline';
@@ -33,8 +33,14 @@ async function run() {
             break;
         }
 
+        const model = wrapLanguageModel({
+            model: ollama("deepseek-r1:14b"),
+            middleware: extractReasoningMiddleware({ tagName: 'think' }),
+        });
+
         const { object } = await generateObject({
             // model: openai('gpt-4o-mini'),
+            // model: model,
             model: ollama("qwen2.5:14b"),
             output: 'array',
             schema: z.enum(['calendar', 'tennis', 'unknown']),

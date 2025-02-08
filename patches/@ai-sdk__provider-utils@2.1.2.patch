@@ -1,0 +1,13 @@
+diff --git a/dist/index.js b/dist/index.js
+index 968178c336377c656822b85112e8bafb3aa02402..a2b17b237b4f34a133a162b6c6950e7834b6cb56 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -582,7 +582,7 @@ var createJsonStreamResponseHandler = (chunkSchema) => async ({ response }) => {
+   };
+ };
+ var createJsonResponseHandler = (responseSchema) => async ({ response, url, requestBodyValues }) => {
+-  const responseBody = await response.text();
++  const responseBody = await response.text();console.log('^^^debug^^^', responseBody);
+   const parsedResult = safeParseJSON({
+     text: responseBody,
+     schema: responseSchema
