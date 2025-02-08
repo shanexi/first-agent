@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@ai-sdk/provider': 1.0.6
+
 importers:
 
   .:
@@ -64,14 +67,6 @@ packages:
     peerDependenciesMeta:
       zod:
         optional: true
-
-  '@ai-sdk/provider@0.0.14':
-    resolution: {integrity: sha512-gaQ5Y033nro9iX1YUjEDFDRhmMcEiCk56LJdIUbX5ozEiCNCfpiBpEqrjSp/Gp5RzBS2W0BVxfG7UGW6Ezcrzg==}
-    engines: {node: '>=18'}
-
-  '@ai-sdk/provider@0.0.26':
-    resolution: {integrity: sha512-dQkfBDs2lTYpKM8389oopPdQgIU007GQyCbuPPrV+K6MtSII3HBfE0stUIMXUb44L+LK1t6GXPP7wjSzjO6uKg==}
-    engines: {node: '>=18'}
 
   '@ai-sdk/provider@1.0.6':
     resolution: {integrity: sha512-hwj/gFNxpDgEfTaYzCYoslmw01IY9kWLKl/wf8xuPvHtQIzlfXWmmUwc8PnCwxyt8cKzIuV0dfUghCf68HQ0SA==}
@@ -407,7 +402,7 @@ snapshots:
 
   '@ai-sdk/openai@0.0.40(zod@3.24.1)':
     dependencies:
-      '@ai-sdk/provider': 0.0.14
+      '@ai-sdk/provider': 1.0.6
       '@ai-sdk/provider-utils': 1.0.5(zod@3.24.1)
       zod: 3.24.1
 
@@ -419,7 +414,7 @@ snapshots:
 
   '@ai-sdk/provider-utils@1.0.22(zod@3.24.1)':
     dependencies:
-      '@ai-sdk/provider': 0.0.26
+      '@ai-sdk/provider': 1.0.6
       eventsource-parser: 1.1.2
       nanoid: 3.3.8
       secure-json-parse: 2.7.0
@@ -428,7 +423,7 @@ snapshots:
 
   '@ai-sdk/provider-utils@1.0.5(zod@3.24.1)':
     dependencies:
-      '@ai-sdk/provider': 0.0.14
+      '@ai-sdk/provider': 1.0.6
       eventsource-parser: 1.1.2
       nanoid: 3.3.6
       secure-json-parse: 2.7.0
@@ -443,14 +438,6 @@ snapshots:
       secure-json-parse: 2.7.0
     optionalDependencies:
       zod: 3.24.1
-
-  '@ai-sdk/provider@0.0.14':
-    dependencies:
-      json-schema: 0.4.0
-
-  '@ai-sdk/provider@0.0.26':
-    dependencies:
-      json-schema: 0.4.0
 
   '@ai-sdk/provider@1.0.6':
     dependencies:
@@ -485,7 +472,7 @@ snapshots:
 
   '@ai-sdk/ui-utils@0.0.50(zod@3.24.1)':
     dependencies:
-      '@ai-sdk/provider': 0.0.26
+      '@ai-sdk/provider': 1.0.6
       '@ai-sdk/provider-utils': 1.0.22(zod@3.24.1)
       json-schema: 0.4.0
       secure-json-parse: 2.7.0
@@ -626,7 +613,7 @@ snapshots:
 
   ai@3.4.33(react@19.0.0)(sswr@2.1.0(svelte@5.19.2))(svelte@5.19.2)(vue@3.5.13)(zod@3.24.1):
     dependencies:
-      '@ai-sdk/provider': 0.0.26
+      '@ai-sdk/provider': 1.0.6
       '@ai-sdk/provider-utils': 1.0.22(zod@3.24.1)
       '@ai-sdk/react': 0.0.70(react@19.0.0)(zod@3.24.1)
       '@ai-sdk/solid': 0.0.54(zod@3.24.1)
