@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_OPTIONS='--import=tsx' node --env-file=.env"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +19,9 @@
   },
   "resolutions": {
     "@ai-sdk/provider": "1.0.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "tsx": "^4.19.2"
   }
 }
