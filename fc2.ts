@@ -1,10 +1,9 @@
 // https://sdk.vercel.ai/docs/ai-sdk-core/generating-structured-data
 
-import { generateObject, extractReasoningMiddleware, wrapLanguageModel } from 'ai';
-import { z } from 'zod'
 import { createOpenAI } from '@ai-sdk/openai';
-import * as readline from 'readline';
+import { generateObject } from 'ai';
 import { createOllama } from "ollama-ai-provider";
+import { z } from 'zod';
 
 const openai = createOpenAI({
     apiKey: process.env.OPENAI_KEY,
@@ -23,28 +22,25 @@ const schema = z.object({
         .string()
 }).describe(`当前时间 ${new Date().toLocaleDateString()}`)
 
-const prompt = '后天上午还有哪些日程'
+const prompt = '周三之前还有哪些日程'
 
 console.log('prompt', prompt)
 
+async function runModel(model: string, type: 'ollama' | 'openai' = 'openai') {
+    const { object } = await generateObject({
+        model: type === 'openai' ? openai(model) : ollama(model),
+        output: 'object',
+        schema,
+        prompt,
+    });
+
+    console.log(model, object)
+}
+
 async function run() {
-    const { object: o1 } = await generateObject({
-        model: openai('gpt-4o-mini'), // 可以处理日期类 $ 0.15 /M tokens | $ 0.6 /M tokens
-        output: 'object',
-        schema,
-        prompt,
-    });
-
-    console.log('o1', o1)
-
-    const { object: o2 } = await generateObject({
-        model: ollama("qwen2.5-coder:14b"),
-        output: 'object',
-        schema,
-        prompt,
-    });
-
-    console.log('o1', o2)
+    await runModel('gpt-4o-mini')
+    await runModel('gpt-4o')
+    await runModel('qwen2.5-coder:14b', 'ollama')
 }
 
 run()
