@@ -33,18 +33,27 @@ async function run() {
             break;
         }
 
+        // 不支持 function calling
         const model = wrapLanguageModel({
+            // model: ollama("deepseek-r1:14b"),
             model: ollama("deepseek-r1:14b"),
             middleware: extractReasoningMiddleware({ tagName: 'think' }),
         });
 
         const { object } = await generateObject({
-            // model: openai('gpt-4o-mini'),
+            // model: openai('gpt-4o-mini'), // 可以处理日期类
+            // model: openai('DeepSeek-R1'), // 不支持 function calling
             // model: model,
-            model: ollama("qwen2.5:14b"),
-            output: 'array',
-            schema: z.enum(['calendar', 'tennis', 'unknown']),
-            prompt,
+            model: ollama("qwen2.5-coder:32b"), // 至少 32b 模型
+            output: 'object',
+            schema: z.object({
+                actions: z.enum(['calendar', 'tennis', 'unknown']),
+                startDatetime: z
+                    .string(),
+                endDatetime: z
+                    .string()
+            }).describe(`当前时间 ${new Date().toLocaleDateString()}`),
+            prompt: prompt,
         });
         console.log('回答:', object);
         console.log('-------------------');
